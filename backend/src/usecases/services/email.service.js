@@ -3,7 +3,7 @@ export class EmailService{
 
     }
 
-    async sendEmail(content,reciever_email,preffered_type){
+    async sendEmail(content,reciever_email){
         try {
             console.log(content,reciever_email);
             return true
