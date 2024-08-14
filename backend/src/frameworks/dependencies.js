@@ -1,5 +1,5 @@
 import { MongoNotificationRepository } from "../adapters/repositories/index.js"
-import { NotficationSend } from "../adapters/usecases/index.js"
+import { NotficationSend } from "../usecases/index.js"
 
 const Repositories = {
     MongoNotificationRepository

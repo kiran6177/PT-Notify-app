@@ -3,10 +3,10 @@ export class NotficationSend{
         this.notificationRepository = new dependencies.Repositories.MongoNotificationRepository();
     }
 
-    async execute({reciever,content,channel,type_preference}){
+    async execute({reciever,content,channel}){
         try {
-            console.log(reciever,content,channel,type_preference);
-            if(!reciever || !content || !channel || !type_preference){
+            console.log(reciever,content,channel);
+            if(!reciever || !content || !channel){
                 throw new Error('Invalid inputs');
             }
             switch(channel){
