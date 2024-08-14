@@ -1,7 +1,6 @@
 import { MailgunService } from "./mailgun.service.js";
 import { SESService } from "./ses.service.js";
 
-
 const TIMER_CONFIG = {
     3 : 1 * 60 * 1000,
     2 : 2 * 60 * 1000,
@@ -12,10 +11,11 @@ export class EmailService{
     constructor(dependencies){
         this.notificationRepository = new dependencies.Repositories.MongoNotificationRepository();
         this.sesService = new SESService()
+        this.mailgunService = new MailgunService()
     }
 
     async sendEmail(notification){
-        try {
+        try {            
             let retryCount = 3;
             const updateNotification = await this.notificationRepository.updateNotification(notification?._id,{status:'PENDING'});
             console.log(updateNotification);
@@ -28,9 +28,10 @@ export class EmailService{
                     }
                     if(retryCount > 0){
                         return this.sesService.getConfig()
-                    }else{
-                        //attach mailgun
+                    }else if(retryCount === 0){
                         console.log("RETRIED 3 TIMES");
+                        return this.mailgunService.getConfig()
+                    }else{
                         return null
                     }
                 }
