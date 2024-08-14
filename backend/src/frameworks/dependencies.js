@@ -1,22 +1,22 @@
-import { MongoNotificationRepository } from "../adapters/repositories/index.js"
+import { MongoNotificationRepository } from "../adapters/repositories/index.js";
 import { NotficationSend, NotificationGet } from "../usecases/index.js";
 import { EmailService } from "../usecases/services/email.service.js";
 
 const Services = {
-    EmailService
-}
+  EmailService,
+};
 
 const Repositories = {
-    MongoNotificationRepository
-}
+  MongoNotificationRepository,
+};
 
 const UseCases = {
-    NotficationSend,
-    NotificationGet
-}
+  NotficationSend,
+  NotificationGet,
+};
 
 export default {
-    Repositories,
-    UseCases,
-    Services
-}
+  Repositories,
+  UseCases,
+  Services,
+};
