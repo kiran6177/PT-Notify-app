@@ -22,10 +22,6 @@ export class EmailService{
             const mailer = async ()=>{
                 let transporter;
                 const assignTransporter = async ()=>{
-                    if(retryCount <= 2 && retryCount > 0){
-                        console.log("RETRIED",retryCount);
-                        await this.notificationRepository.updateNotification(notification?._id,{status:'RETRYING'});
-                    }
                     if(retryCount > 0){
                         return this.sesService.getConfig()
                     }else if(retryCount === 0){
@@ -52,6 +48,7 @@ export class EmailService{
                         await this.notificationRepository.updateNotification(notification?._id,{status:'FAILED'});
                         console.log(retryCount,TIMER_CONFIG[retryCount]);
                         setTimeout(mailer,TIMER_CONFIG[retryCount])
+                        await this.notificationRepository.updateNotification(notification?._id,{status:'RETRYING'});
                         retryCount-=1
                     })
                 }else{

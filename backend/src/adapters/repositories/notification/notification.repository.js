@@ -6,6 +6,9 @@ class NotificationRepository{
     async updateNotification(){
         throw new Error('updateNotification not implemented!!')
     }
+    async getNotifications(){
+        throw new Error('getNotifications not implemented!!')
+    }
 }
 
 export class MongoNotificationRepository extends NotificationRepository{
@@ -22,6 +25,16 @@ export class MongoNotificationRepository extends NotificationRepository{
     async updateNotification(id,data){
         try {
             return await NotificationModel.findByIdAndUpdate({_id:id},{$set:data},{new:true})
+        } catch (err) {
+            const error = new Error();
+            error.statusCode = 500;
+            error.reasons = [err.message]
+            throw error
+        }
+    } 
+    async getNotifications(){
+        try {
+            return await NotificationModel.find()
         } catch (err) {
             const error = new Error();
             error.statusCode = 500;

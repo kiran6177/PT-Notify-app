@@ -7,6 +7,10 @@ import { ErrorHandler } from '../adapters/middlewares/error.handler.js';
 export default () =>{
     const app = express();
 
+    app.use(cors({
+        origin:'http://localhost:3000',
+        credentials:true
+    }))
     app.use(express.json());
     
     app.use('/api/',notifyRouter)
