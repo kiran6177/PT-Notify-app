@@ -1,4 +1,4 @@
-# **Notify App**
+# Notify App
 
 ### Backend – (Steps to start)
 
@@ -21,6 +21,7 @@
 
 ### Frontend – (Steps to start)
 
+-   npm install
 -   npm start
 
 MongoDB database should be locally installed and run on localhost:27017 which creates a db (notify).
