@@ -2,9 +2,9 @@ import { MailgunService } from "./mailgun.service.js";
 import { SESService } from "./ses.service.js";
 
 const TIMER_CONFIG = {
-  3: 1 * 60 * 1000,
-  2: 2 * 60 * 1000,
-  1: 3 * 60 * 1000,
+  3: 1 * 60 * 1000,//1 MINUTE
+  2: 5 * 60 * 1000,//5 MIN (2 MIN FOR DEVELOPMENT)
+  1: 15 * 60 * 1000,//15 MIN (3 MIN FOR DEVELOPMENT)
 };
 
 export class EmailService {
